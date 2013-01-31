@@ -3,7 +3,7 @@ __This gem is currently under construction, please check back later.__
 
 # WillToggle
 
-This gem is intended to clean up RoR views for jQuery toggling between hidden and visible.
+This gem is intended to clean up RoR views for jQuery toggling between hidden and visible elements.
 
 ```ruby
   <%= will_toggle 'Change Your Password', 'users/password_fields', checked: false, locals { f: f } %>
