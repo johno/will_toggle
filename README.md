@@ -41,6 +41,7 @@ A minimalist:
   <%= will_toggle 'Change Your Password', 'users/password_fields', locals { f: f } %>
 ```
 
+
 ### Available options:
 
   - label: the string you will use to describe the toggled div, i.e. show details.
