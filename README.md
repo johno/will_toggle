@@ -1,4 +1,4 @@
-__This gem is currently under construction, please check back later.__
+__This gem is currently under construction and isn't quite ready for production use, please check back later for updates.__
 
 
 # WillToggle
@@ -6,10 +6,10 @@ __This gem is currently under construction, please check back later.__
 This gem is intended to clean up RoR views for jQuery toggling between hidden and visible elements.
 
 ```ruby
-  <%= will_toggle 'Change Your Password', 'users/password_fields', checked: false, locals { f: f } %>
+  <%= will_toggle 'Change Your Password', 'users/password\_fields', checked: false, locals { f: f } %>
 ```
 
-Just like that, you now have a checkbox that, when checked, will display the password\_fields partial.
+Just like that, you now have a `check_box_tag` that will display the `password_fields` partial when checked, and hide it from view when unchecked.  This becomes very handy in complex forms when you want to hide certain fields from a user until they actively enable a feature.
 
 
 ### How does it work?
@@ -27,9 +27,9 @@ Add this line to your application's Gemfile:
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
-Or install it yourself as:
+Or, install it yourself as:
 
     $ gem install will_toggle
 
@@ -61,3 +61,7 @@ All the bells and whistles:
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Acknowledgements
+
+This gem is inspired by [will\_paginate](www.github.com/mislav/will_paginate)
