@@ -1,12 +1,12 @@
 __This gem is currently under construction and isn't quite ready for production use, please check back later for updates.__
 
 
-# WillToggle
+# Will Toggle
 
 This gem is intended to clean up RoR views for jQuery toggling between hidden and visible elements.
 
 ```ruby
-  <%= will_toggle 'Change Your Password', 'users/password\_fields', checked: false, locals { f: f } %>
+  <%= will_toggle 'Change Your Password', 'users/password_fields', checked: false, locals { f: f } %>
 ```
 
 Just like that, you now have a `check_box_tag` that will display the `password_fields` partial when checked, and hide it from view when unchecked.  This becomes very handy in complex forms when you want to hide certain fields from a user until they actively enable a feature.
