@@ -14,7 +14,7 @@ Just like that, you now have a `check_box_tag` that will display the `password_f
 
 ### How does it work?
 
-A `check_box_tag` is added with the `label_tag 'Change Your Password'`.  The checkbox is wired in to the `onchange` event, which triggers a jQuery function to toggle a `will-toggle-wrapper` that encapsulates the partial.
+A `check_box_tag` is added with `label_tag 'Change Your Password'`.  The checkbox is wired in to the `onchange` event, which triggers a jQuery function to toggle a `will-toggle-wrapper` that encapsulates the partial.
 
 __Currently will\_toggle only supports a checkbox toggle, however, you can expect many more implementations to come.__
 
@@ -44,10 +44,10 @@ A minimalist:
 
 ### Available options:
 
-  - label: the string you will use to describe the toggled div, i.e. show details.
-  - checked: true or false, defaults to false. Specifies whether the checkbox will be checked.
-  - locals: a hash of necessary variables for your partial.
-  - clear\_data: true or false, defaults to false. If true, the toggle function will clear any values in any child `text_field` upon toggle. Especially useful for optional form fields.
+  - `label`: the string you will use to describe the toggled div, i.e. show details.
+  - `checked`: true or false, defaults to false. Specifies whether the checkbox will be checked.
+  - `locals`: a hash of necessary variables for your partial.
+  - `clear_data`: true or false, defaults to false. If true, the toggle function will clear any values in any child `text_field` upon toggle. Especially useful for optional form fields.
   
 All the bells and whistles:
 ```ruby
@@ -64,4 +64,4 @@ All the bells and whistles:
 
 ## Acknowledgements
 
-This gem is inspired by [will\_paginate](www.github.com/mislav/will_paginate)
+This gem is inspired by [will\_paginate](https://www.github.com/mislav/will_paginate)
