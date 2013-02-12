@@ -15,5 +15,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = WillToggle::VERSION
   
+  gem.add_dependency "rails"
   gem.add_dependency "jquery-rails"
 end
