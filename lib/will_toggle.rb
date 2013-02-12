@@ -40,7 +40,7 @@ module WillToggle
   def will_toggle_function
     <<-JS
       $.fn.willToggleDiv = function(div) {
-        $(div).slideToggle(600)
+        $(div).slideToggle(100)
                 .find('input')
                   .val(null);
       }
