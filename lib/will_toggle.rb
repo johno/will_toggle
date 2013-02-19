@@ -10,6 +10,10 @@ module WillToggle
       @div_number ||= 0
       @div_number += 1
     end
+    
+    def first_div?
+      @div_number == 1
+    end
   end
   
   def will_toggle toggle_options = {}
@@ -31,9 +35,9 @@ module WillToggle
   
   def insert_javascript
     "<script type='text/javascript'> \
-      #{will_toggle_function} \
+      #{will_toggle_function if WillToggle.first_div? } \
       #{bind_will_toggle_function} \
-      #{set_initial_visibility_function}
+      #{set_initial_visibility_function if WillToggle.first_div? }
     </script>"
   end
   
