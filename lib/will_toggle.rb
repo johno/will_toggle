@@ -35,9 +35,9 @@ module WillToggle
   
   def insert_javascript
     "<script type='text/javascript'> \
-      #{will_toggle_function if WillToggle.first_div? } \
+      #{will_toggle_function } \
       #{bind_will_toggle_function} \
-      #{set_initial_visibility_function if WillToggle.first_div? }
+      #{set_initial_visibility_function }
     </script>"
   end
   
