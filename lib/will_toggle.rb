@@ -34,11 +34,13 @@ module WillToggle
   end
   
   def insert_javascript
-    "<script type='text/javascript'> \
-      #{will_toggle_function } \
-      #{bind_will_toggle_function} \
-      #{set_initial_visibility_function }
-    </script>"
+    <<-HTML
+      <script type='text/javascript'> \
+        #{will_toggle_function } \
+        #{bind_will_toggle_function} \
+        #{set_initial_visibility_function }
+      </script>
+    HTML
   end
   
   def will_toggle_function
