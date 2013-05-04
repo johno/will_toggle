@@ -16,21 +16,22 @@ module WillToggle
     end
   end
   
-  def will_toggle toggle_options = {}
+  def will_toggle(toggle_options = {})
     return nil unless toggle_options[:partial]  # Nothing to toggle.
-    
     toggle_options[:id] = WillToggle.next_div_number
-    opts = ViewHelpers::Options.new toggle_options
+    opts = ViewHelpers::Options.new(toggle_options)
     
-    html = ''
-    html = '<div class="field check-box">'
-    html << check_box_tag(nil, nil, opts.checked, class: "form-input check-box will-toggle-check-box")
-    html << label_tag(nil, opts.label_text)
-    html << '</div>'
-    html << "<div class='will-toggle-content' id='#{opts.div_name}'>"
-    html <<   render(partial: opts.partial, locals: opts.locals)
-    html << "</div>"
+    html = <<-HTML
+      <div class='field check-box'>
+        #{ check_box_tag(nil, nil, opts.checked, class: "form-input check-box will-toggle-check-box") }
+        #{ label_tag(nil, opts.label_text) }
+      </div>
+      <div class='will-toggle-content' id='#{ opts.div_name }'>
+        #{ render(partial: opts.partial, locals: opts.locals) }
+      </div>
+    HTML
     html << insert_javascript
+    html.html_safe
   end
   
   def insert_javascript
@@ -73,7 +74,6 @@ module WillToggle
             }
         });
       }
-      
       $(window).ready(function() { $().setInitialVisibility(); });
     JS
   end

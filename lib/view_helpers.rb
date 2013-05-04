@@ -17,7 +17,6 @@ module ViewHelpers
       self.locals = options[:locals]
       self.checked = options[:checked]
       self.clear_data = options[:clear_data]
-      
       set_defaults
     end
     
