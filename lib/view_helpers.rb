@@ -16,8 +16,9 @@ module WillToggle
     }
   end
   
-  def will_toggle(toggle_options = {})
+  def will_toggle(attribute = nil, toggle_options = {})
     return nil unless toggle_options[:partial]  # Nothing to toggle.
+    
     WillToggle::ViewHelpers.toggle_options.merge(toggle_options)
     generate_html(toggle_options).html_safe
   end
@@ -26,22 +27,27 @@ module WillToggle
     <<-HTML
       <div class='will-toggle-wrapper'>
         <div class='field check-box'>
-          #{ get_check_box(toggle_options) }
+          #{ get_check_box(attribute) }
         </div>
         <div class='will-toggle-content'>
-          #{ render partial: toggle_options[:partial], locals: toggle_options[:locals] }
+          #{ get_partial }
         </div>
       </div>
     HTML
   end
   
-  def get_check_box(toggle_options = {})
-    if toggle_options[:map_to_attr] and toggle_options[:form]
-      toggle_options[:form].check_box(toggle_options[:map_to_attr], onChange: "willToggle.toggleNext();", class: 'check-box')
-      toggle_options[:form].label(toggle_options[:map_to_attr], toggle_options[:label])
+  def get_check_box(attribute = nil)
+    if attribute
+      toggle_options[:form].check_box(attribute, onChange: "willToggle.toggleNext();", class: 'check-box')
+      toggle_options[:form].label(attribute, WillToggle::ViewHelpers.toggle_options[:label])
     else
-      check_box_tag(nil, nil, toggle_options[:checked], onChange: "willToggle.toggleNext();", class: 'check-box')
-      label_tag(nil, toggle_options[:label])
+      check_box_tag(nil, nil, WillToggle::ViewHelpers.toggle_options[:checked], onChange: "willToggle.toggleNext();", class: 'check-box')
+      label_tag(nil, WillToggle::ViewHelpers.toggle_options[:label])
     end
+  end
+  
+  def get_partial
+    render partial: WillToggle::ViewHelpers.toggle_options[:partial], 
+           locals: WillToggle::ViewHelpers.toggle_options[:locals]
   end
 end
