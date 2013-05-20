@@ -1,5 +1,3 @@
-require 'will_toggle'
-
 module WillToggle
   module ViewHelpers
   
