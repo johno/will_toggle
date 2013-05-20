@@ -7,7 +7,7 @@ module WillToggle
       attr_accessor :toggle_options
     end
     
-    self.toggle_options {
+    self.toggle_options = {
       checked: false,
       clear_data: false,
       locals: nil,
