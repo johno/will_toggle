@@ -6,27 +6,19 @@ module WillToggle
     class << self
       attr_accessor :toggle_options
     end
-    
-    self.toggle_options = {
-      checked: false,
-      clear_data: false,
-      locals: nil,
-      partial: nil,
-      label_text: nil
-    }
   end
   
-  def will_toggle(attribute = nil, toggle_options = {})
+  def will_toggle(attribute = nil, options = {})
     puts "!!!!!!!"
     puts attribute.inspect
-    puts toggle_options.inspect
+    puts options.inspect
     
-    WillToggle::ViewHelpers.toggle_options.merge(toggle_options)
+    WillToggle::ViewHelpers.toggle_options = options
     puts WillToggle::ViewHelpers.toggle_options
-    generate_html.html_safe
+    generate_html(attribute).html_safe
   end
   
-  def generate_html
+  def generate_html(attribute)
     puts 'GENERATE CALLED.'
     <<-HTML
       <div class='will-toggle-wrapper'>
@@ -40,7 +32,7 @@ module WillToggle
     HTML
   end
   
-  def get_check_box(attribute = nil)
+  def get_check_box(attribute)
     if attribute
       toggle_options[:form].check_box(attribute, onChange: "willToggle.toggleNext();", class: 'check-box')
       toggle_options[:form].label(attribute, WillToggle::ViewHelpers.toggle_options[:label])
