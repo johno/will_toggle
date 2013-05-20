@@ -1,5 +1,5 @@
 require 'will_toggle/version'
-require 'will_toggle/view_helpers'
+require 'view_helpers'
 
 module WillToggle
 end
