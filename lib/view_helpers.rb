@@ -20,13 +20,14 @@ module WillToggle
     puts "!!!!!!!"
     puts attribute.inspect
     puts toggle_options.inspect
-    return nil unless toggle_options[:partial]  # Nothing to toggle.
     
     WillToggle::ViewHelpers.toggle_options.merge(toggle_options)
-    generate_html(toggle_options).html_safe
+    puts WillToggle::ViewHelpers.toggle_options
+    generate_html.html_safe
   end
   
-  def generate_html(toggle_options = {})
+  def generate_html
+    puts 'GENERATE CALLED.'
     <<-HTML
       <div class='will-toggle-wrapper'>
         <div class='field check-box'>
