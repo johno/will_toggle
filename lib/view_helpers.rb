@@ -17,6 +17,9 @@ module WillToggle
   end
   
   def will_toggle(attribute = nil, toggle_options = {})
+    puts "!!!!!!!"
+    puts attribute.inspect
+    puts toggle_options.inspect
     return nil unless toggle_options[:partial]  # Nothing to toggle.
     
     WillToggle::ViewHelpers.toggle_options.merge(toggle_options)
