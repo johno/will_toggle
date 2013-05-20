@@ -2,5 +2,5 @@ $ ->
   willToggle.bindAndSetInitialVisibility()
   
 willToggle =
-  toggleDiv: (div) ->
-    
+  toggleDiv: ->
+    $(this).parent().parent().find('.will-toggle-content').slideToggle(100)
