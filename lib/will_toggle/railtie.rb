@@ -5,5 +5,7 @@ module WillToggle
     initializer "will_toggle" do |app|
       ActionView::Base.send :include, WillToggle
     end
+    
+    require 'will_toggle/view_helpers'
   end
 end
