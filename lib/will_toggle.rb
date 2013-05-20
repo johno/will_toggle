@@ -2,6 +2,7 @@ require 'will_toggle/version'
 require 'view_helpers'
 
 module WillToggle
+  include ViewHelpers
 end
 
 defined?(Rails::Railtie) ?
