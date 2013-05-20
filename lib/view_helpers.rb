@@ -1,18 +1,7 @@
 module WillToggle
   module ViewHelpers
-  
-    class << self
-      attr_accessor :toggle_options
-    end
-  
     def will_toggle(attribute = nil, options = {})
-      puts "!!!!!!!"
-      puts attribute.inspect
-      puts options.inspect
-    
-      WillToggle::ViewHelpers.toggle_options = options
-      puts WillToggle::ViewHelpers.toggle_options
-      generate_html(attribute).html_safe
+      generate_html(attribute, options).html_safe
     end
   
     def generate_html(attribute)
@@ -20,28 +9,28 @@ module WillToggle
       <<-HTML
         <div class='will-toggle-wrapper'>
           <div class='field check-box'>
-            #{ get_check_box(attribute) }
+            #{ get_check_box(attribute, options) }
           </div>
           <div class='will-toggle-content'>
-            #{ get_partial }
+            #{ get_partial(options) }
           </div>
         </div>
       HTML
     end
   
-    def get_check_box(attribute)
+    def get_check_box(attribute, options = {})
       if attribute
-        WillToggle::ViewHelpers.toggle_options[:form].check_box(attribute, onChange: "willToggle.toggleNext();", class: 'check-box')
-        WillToggle::ViewHelpers.toggle_options[:form].label(attribute, WillToggle::ViewHelpers.toggle_options[:label])
+        options[:form].check_box(attribute, onChange: "willToggle.toggleNext();", class: 'check-box')
+        options[:form].label(attribute, options[:label])
       else
-        check_box_tag(nil, nil, WillToggle::ViewHelpers.toggle_options[:checked], onChange: "willToggle.toggleNext();", class: 'check-box')
-        label_tag(nil, WillToggle::ViewHelpers.toggle_options[:label])
+        check_box_tag(nil, nil, options[:checked], onChange: "willToggle.toggleNext();", class: 'check-box')
+        label_tag(nil, options[:label])
       end
     end
   
-    def get_partial
-      render partial: WillToggle::ViewHelpers.toggle_options[:partial], 
-             locals: WillToggle::ViewHelpers.toggle_options[:locals]
+    def get_partial(options = {})
+      render partial: options[:partial], 
+             locals: options[:locals]
     end
   end
 end
