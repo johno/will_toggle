@@ -34,8 +34,8 @@ module WillToggle
   
   def get_check_box(attribute)
     if attribute
-      toggle_options[:form].check_box(attribute, onChange: "willToggle.toggleNext();", class: 'check-box')
-      toggle_options[:form].label(attribute, WillToggle::ViewHelpers.toggle_options[:label])
+      WillToggle::ViewHelpers.toggle_options[:form].check_box(attribute, onChange: "willToggle.toggleNext();", class: 'check-box')
+      WillToggle::ViewHelpers.toggle_options[:form].label(attribute, WillToggle::ViewHelpers.toggle_options[:label])
     else
       check_box_tag(nil, nil, WillToggle::ViewHelpers.toggle_options[:checked], onChange: "willToggle.toggleNext();", class: 'check-box')
       label_tag(nil, WillToggle::ViewHelpers.toggle_options[:label])
