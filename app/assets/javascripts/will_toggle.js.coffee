@@ -1,5 +1,5 @@
 $ ->
-  willToggle.bindAndSetInitialVisibility()
+  # willToggle.bindAndSetInitialVisibility()
   
 willToggle =
   toggleDiv: ->

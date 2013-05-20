@@ -1,11 +1,13 @@
 module WillToggle
   module ViewHelpers
-    def will_toggle(attribute = nil, options = {})
+    def will_toggle(options = {})
+      attribute = nil
       generate_html(attribute, options).html_safe
     end
   
     def generate_html(attribute, options = {})
       puts 'GENERATE CALLED.'
+      puts options.inspect
       <<-HTML
         <div class='will-toggle-wrapper'>
           <div class='field check-box'>
@@ -19,13 +21,15 @@ module WillToggle
     end
   
     def get_check_box(attribute, options = {})
+      html = ''
       if attribute
-        options[:form].check_box(attribute, onChange: "willToggle.toggleNext();", class: 'check-box')
-        options[:form].label(attribute, options[:label])
+        html << options[:form].check_box(attribute, onChange: "willToggle.toggleNext();", class: 'check-box')
+        html << options[:form].label(attribute, options[:label])
       else
-        check_box_tag(nil, nil, options[:checked], onChange: "willToggle.toggleNext();", class: 'check-box')
-        label_tag(nil, options[:label])
+        html << check_box_tag(nil, nil, options[:checked], onChange: "willToggle.toggleNext();", class: 'check-box')
+        html << label_tag(nil, options[:label])
       end
+      html
     end
   
     def get_partial(options = {})
