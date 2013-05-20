@@ -4,7 +4,7 @@ module WillToggle
       generate_html(attribute, options).html_safe
     end
   
-    def generate_html(attribute)
+    def generate_html(attribute, options = {})
       puts 'GENERATE CALLED.'
       <<-HTML
         <div class='will-toggle-wrapper'>
