@@ -38,12 +38,16 @@ module WillToggle
     end
     
     def get_partial(options = {})
-      j render partial: options[:partial], 
-               locals: options[:locals]
+      render partial: options[:partial], 
+             locals: options[:locals]
     end
     
     def js_call(options)
-      "willToggle.toggleNext('#will-toggle-#{ @@toggle_index }', #{ options[:clear_data] });"
+      "willToggle.toggleNext(\'#will-toggle-#{ @@toggle_index }\'#{ js_options(options) });".html_safe
+    end
+    
+    def js_options(options)
+      " , #{ options[:clear_data] }" if options[:clear_data]
     end
   end
 end
