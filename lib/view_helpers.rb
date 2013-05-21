@@ -1,34 +1,45 @@
-require 'will_toggle'
-
-module ViewHelpers
-  class Options
+module WillToggle
+  module ViewHelpers
+    @@toggle_index ||= 0
     
-    attr_accessor :id 
-    attr_accessor :label_text 
-    attr_accessor :partial
-    attr_accessor :locals
-    attr_accessor :checked
-    attr_accessor :clear_data
-    
-    def initialize options = {}
-      self.id = options[:id]
-      self.label_text = options[:label_text]
-      self.partial = options[:partial]
-      self.locals = options[:locals]
-      self.checked = options[:checked]
-      self.clear_data = options[:clear_data]
-      
-      set_defaults
+    def will_toggle(options = {})
+      attribute = nil
+      @@toggle_index += 1
+      generate_html(attribute, options).html_safe
     end
-    
-    def div_name
-      "will-toggle-" << self.id
+  
+    def generate_html(attribute, options = {})
+      <<-HTML
+        <div class='will-toggle-wrapper'>
+          <div class='field check-box'>
+            #{ get_check_box(attribute, options) }
+          </div>
+          <div class='will-toggle-content' id="will-toggle-#{ @@toggle_index }">
+            #{ get_partial(options) }
+          </div>
+        </div>
+      HTML
     end
-    
-    private
-      def set_defaults
-        self.checked ||= false
-        self.clear_data ||= true
+  
+    def get_check_box(attribute, options = {})
+      html = ''
+      if attribute
+        html << options[:form].check_box(attribute, onChange: js_call, class: 'check-box')
+        html << options[:form].label(attribute, options[:label])
+      else
+        html << check_box_tag(nil, nil, options[:checked], onChange: js_call, class: 'check-box')
+        html << label_tag(nil, options[:label])
       end
+      html
+    end
+    
+    def get_partial(options = {})
+      render partial: options[:partial], 
+             locals: options[:locals]
+    end
+    
+    def js_call
+      "willToggle.toggleNext('will-toggle-#{ @@toggle_index }');"
+    end
   end
 end
