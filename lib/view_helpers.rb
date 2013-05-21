@@ -28,10 +28,10 @@ module WillToggle
     def get_check_box(attribute, options = {})
       html = ''
       if attribute
-        html << options[:form].check_box(attribute, onChange: js_call, class: 'check-box will-toggle-check-box')
+        html << options[:form].check_box(attribute, onChange: js_call(options), class: 'check-box will-toggle-check-box')
         html << options[:form].label(attribute, options[:label])
       else
-        html << check_box_tag(nil, nil, options[:checked], onChange: js_call, class: 'check-box will-toggle-check-box')
+        html << check_box_tag(nil, nil, options[:checked], onChange: js_call(options), class: 'check-box will-toggle-check-box')
         html << label_tag(nil, options[:label], class: 'will-toggle-label')
       end
       html
@@ -42,8 +42,8 @@ module WillToggle
              locals: options[:locals]
     end
     
-    def js_call
-      "willToggle.toggleNext('#will-toggle-#{ @@toggle_index }');"
+    def js_call(options)
+      "willToggle.toggleNext('#will-toggle-#{ @@toggle_index }', #{ options[:clear_data] });"
     end
   end
 end
