@@ -38,8 +38,8 @@ module WillToggle
     end
     
     def get_partial(options = {})
-      render partial: options[:partial], 
-             locals: options[:locals]
+      j render partial: options[:partial], 
+               locals: options[:locals]
     end
     
     def js_call(options)
