@@ -39,7 +39,7 @@ module WillToggle
     end
     
     def js_call
-      "willToggle.toggleNext('will-toggle-#{ @@toggle_index }');"
+      "willToggle.toggleNext('#will-toggle-#{ @@toggle_index }');"
     end
   end
 end
