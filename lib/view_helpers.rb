@@ -14,21 +14,25 @@ module WillToggle
           <div class='field check-box'>
             #{ get_check_box(attribute, options) }
           </div>
-          <div class='will-toggle-content' id="will-toggle-#{ @@toggle_index }">
+          <div class='will-toggle-content' id="will-toggle-#{ @@toggle_index }" style="display: #{ visibility(options[:checked]) };">
             #{ get_partial(options) }
           </div>
         </div>
       HTML
     end
-  
+    
+    def visibility(checked = false)
+      checked ? :block : :none
+    end
+    
     def get_check_box(attribute, options = {})
       html = ''
       if attribute
-        html << options[:form].check_box(attribute, onChange: js_call, class: 'check-box')
+        html << options[:form].check_box(attribute, onChange: js_call, class: 'check-box will-toggle-check-box')
         html << options[:form].label(attribute, options[:label])
       else
-        html << check_box_tag(nil, nil, options[:checked], onChange: js_call, class: 'check-box')
-        html << label_tag(nil, options[:label])
+        html << check_box_tag(nil, nil, options[:checked], onChange: js_call, class: 'check-box will-toggle-check-box')
+        html << label_tag(nil, options[:label], class: 'will-toggle-label')
       end
       html
     end
@@ -39,7 +43,7 @@ module WillToggle
     end
     
     def js_call
-      "willToggle.toggleNext('will-toggle-#{ @@toggle_index }');"
+      "willToggle.toggleNext('#will-toggle-#{ @@toggle_index }');"
     end
   end
 end
