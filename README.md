@@ -14,7 +14,7 @@ Just like that, you now have a `check_box_tag` that will display the `password_f
 
 ## How does it work?
 
-A `check_box_tag` is added with `label_tag 'Change Your Password'`.  The checkbox is wired in to the `onchange` event, which triggers a jQuery function to toggle a `will-toggle-wrapper` that encapsulates the partial.
+A `check_box_tag` is added with `label_tag 'Change Your Password'`.  The checkbox is wired in to the `onchange` event, which triggers a jQuery function to toggle a `will-toggle-wrapper` that encapsulates the partial.  Will Toggle allows you to abstract out the javascript functions, div wrappers, and other view elements so that your HTML/ERB/HAML is simple and organized.
 
 __Currently will\_toggle only supports a checkbox toggle, however, you can expect many more implementations to come.__
 
@@ -43,13 +43,6 @@ A minimalist:
 ```ruby
   <%= will_toggle label: 'Change Your Password', partial: 'users/password_fields', locals: { f: f } %>
 ```
-
-### Available options:
-
-  - `label`: the string you will use to describe the toggled div, i.e. show details.
-  - `checked`: true or false, defaults to false. Specifies whether the checkbox will be checked.
-  - `locals`: a hash of necessary variables for your partial.
-  - `clear_data`: true or false, defaults to false. If true, the toggle function will clear any values in any child `text_field` upon toggle. Especially useful for optional form fields.
   
 All the bells and whistles:
 ```ruby
@@ -59,6 +52,13 @@ All the bells and whistles:
                   clear_data: true, 
                   locals: { f: f } %>
 ```
+
+### Available options:
+
+  - `label`: the string you will use to describe the toggled div, i.e. show details.
+  - `checked`: true or false, defaults to false. Specifies whether the checkbox will be checked.
+  - `locals`: a hash of necessary variables for your partial.
+  - `clear_data`: true or false, defaults to false. If true, the toggle function will clear any values in any child `text_field` upon toggle. Especially useful for optional form fields.
 
 ## Contributing
 
