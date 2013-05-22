@@ -12,7 +12,7 @@ This gem is intended to clean up RoR views for jQuery toggling between hidden an
 Just like that, you now have a `check_box_tag` that will display the `password_fields` partial when checked, and hide it from view when unchecked.  This becomes very handy in complex forms when you want to hide certain fields from a user until they actively enable a feature.
 
 
-### How does it work?
+## How does it work?
 
 A `check_box_tag` is added with `label_tag 'Change Your Password'`.  The checkbox is wired in to the `onchange` event, which triggers a jQuery function to toggle a `will-toggle-wrapper` that encapsulates the partial.
 
