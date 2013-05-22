@@ -33,6 +33,9 @@ Or, install it yourself as:
 
     $ gem install will_toggle
 
+In your application.js, you will have to include will\_toggle's scripts with:
+
+    //= require will_toggle
 
 ## Usage
 
