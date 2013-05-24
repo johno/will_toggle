@@ -1,10 +1,13 @@
 # Adopted from: 
 # https://github.com/mislav/will_paginate/blob/master/spec/view_helpers/action_view_spec.rb
+Routes = ActionDispatch::Routing::RouteSet.new
+
 class DummyController
   attr_reader :request
   attr_accessor :controller_name
   
   include ActionController::UrlFor
+  include Routes.url_helpers
   
   def initialize
     @request = DummyRequest.new
@@ -32,7 +35,7 @@ class DummyRequest
   def initialize
     @get = true
     @params = {}
-    @symbolized_path_parameters = { :controller => 'foo', :action => 'bar' }
+    @symbolized_path_parameters = { controller: :foo, action: :bar }
   end
   
   def get?
