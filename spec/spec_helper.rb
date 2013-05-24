@@ -1,4 +1,6 @@
 require 'rspec'
+require 'rails/engine'
+require 'will_toggle'
 require 'action_controller'
 require 'helpers/dummy_controller'
 
