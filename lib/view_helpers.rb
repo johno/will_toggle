@@ -1,10 +1,9 @@
 module WillToggle
   module ViewHelpers
     @@toggle_index ||= 0
-    
+
     def will_toggle(options = {})
       attribute = nil
-      @@toggle_index += 1
       generate_html(attribute, options).html_safe
     end
   
@@ -59,7 +58,7 @@ module WillToggle
 
     def get_radio_button(name, options = {})
       html = ''
-        html << radio_button_tag(name, nil, options[:checked], onChange: js_radio_call(name, options), class: 'check-box will-toggle-radio-button')
+        html << radio_button_tag(name, nil, options[:checked], onChange: js_radio_call(name, options), class: 'check-box will-toggle-radio-button', value: -1)
         html << label_tag(nil, options[:label], class: 'will-toggle-label')
       html
     end
