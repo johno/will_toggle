@@ -8,7 +8,8 @@ module WillToggle
       generate_html(attribute, options).html_safe
     end
   
-    def will_toggle_radio(name, options = {})
+    def will_toggle_radio(options = {})
+      name = options[:name]
       @@toggle_index += 1
       generate_radio_html(name, options)
     end
@@ -27,7 +28,7 @@ module WillToggle
     end
 
 
-    def generate_html(attribute, options = {})
+    def generate_radio_html(attribute, options = {})
       <<-HTML
         <div class='will-toggle-wrapper'>
           <div class='field radio-button'>
@@ -58,13 +59,8 @@ module WillToggle
 
     def get_radio_button(name, options = {})
       html = ''
-      if name
-        html << options[:form].radio_button(name, onChange: js_call(options), class: 'check-box will-toggle-radio-button')
-        html << options[:form].label(attribute, options[:label])
-      else
-        html << radio_button_tag(nil, nil, options[:checked], onChange: js_call(options), class: 'check-box will-toggle-radio-button')
+        html << radio_button_tag(name, nil, options[:checked], onChange: js_radio_call(name, options), class: 'check-box will-toggle-radio-button')
         html << label_tag(nil, options[:label], class: 'will-toggle-label')
-      end
       html
     end
 
@@ -77,7 +73,11 @@ module WillToggle
     def js_call(options)
       "willToggle.toggleNext(\'#will-toggle-#{ @@toggle_index }\'#{ js_options(options) });".html_safe
     end
-    
+
+    def js_radio_call(name, options)
+      "willToggle.toggleRadios(name, \'#will-toggle-#{ @@toggle_index }\'#{ js_options(options) });".html_safe
+    end
+
     def js_options(options)
       " , #{ options[:clear_data] }" if options[:clear_data]
     end
