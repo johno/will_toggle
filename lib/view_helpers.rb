@@ -62,7 +62,7 @@ module WillToggle
         html << options[:form].radio_button(name, onChange: js_call(options), class: 'check-box will-toggle-radio-button')
         html << options[:form].label(attribute, options[:label])
       else
-        html << radio_button_tag(name, nil, options[:checked], onChange: js_call(options), class: 'check-box will-toggle-radio-button')
+        html << radio_button_tag(nil, nil, options[:checked], onChange: js_call(options), class: 'check-box will-toggle-radio-button')
         html << label_tag(nil, options[:label], class: 'will-toggle-label')
       end
       html
