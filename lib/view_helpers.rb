@@ -3,6 +3,7 @@ module WillToggle
     @@toggle_index ||= 0
 
     def will_toggle(options = {})
+      @@toggle_index += 1
       attribute = nil
       generate_html(attribute, options).html_safe
     end
