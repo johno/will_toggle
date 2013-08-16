@@ -8,8 +8,7 @@ module WillToggle
     end
   
     def will_toggle_radio(options = {})
-      name = options[:name]
-      value = options[:value]
+      @@toggle_index += 1
       generate_radio_html(options).html_safe
     end
 
