@@ -8,11 +8,31 @@ module WillToggle
       generate_html(attribute, options).html_safe
     end
   
+    def will_toggle_radio(options = {})
+      name = options[:name]
+      @@toggle_index += 1
+      generate_radio_html(name, options).html_safe
+    end
+
     def generate_html(attribute, options = {})
       <<-HTML
         <div class='will-toggle-wrapper'>
           <div class='field check-box'>
             #{ get_check_box(attribute, options) }
+          </div>
+          <div class='will-toggle-content' id="will-toggle-#{ @@toggle_index }" style="display: #{ visibility(options[:checked]) };">
+            #{ get_partial(options) }
+          </div>
+        </div>
+      HTML
+    end
+
+
+    def generate_radio_html(attribute, options = {})
+      <<-HTML
+        <div class='will-toggle-wrapper'>
+          <div class='field radio-button'>
+            #{ get_radio_button(attribute, options) }
           </div>
           <div class='will-toggle-content' id="will-toggle-#{ @@toggle_index }" style="display: #{ visibility(options[:checked]) };">
             #{ get_partial(options) }
@@ -36,6 +56,14 @@ module WillToggle
       end
       html
     end
+
+    def get_radio_button(name, options = {})
+      html = ''
+        html << radio_button_tag(name, nil, options[:checked], onChange: js_radio_call(name, options), class: 'check-box will-toggle-radio-button')
+        html << label_tag(nil, options[:label], class: 'will-toggle-label')
+      html
+    end
+
     
     def get_partial(options = {})
       render partial: options[:partial], 
@@ -45,7 +73,11 @@ module WillToggle
     def js_call(options)
       "willToggle.toggleNext(\'#will-toggle-#{ @@toggle_index }\'#{ js_options(options) });".html_safe
     end
-    
+
+    def js_radio_call(name, options)
+      "willToggle.toggleRadios(name, \'#will-toggle-#{ @@toggle_index }\'#{ js_options(options) });".html_safe
+    end
+
     def js_options(options)
       " , #{ options[:clear_data] }" if options[:clear_data]
     end
