@@ -16,7 +16,7 @@ Just like that, you now have a `check_box_tag` that will display the `password_f
 
 A `check_box_tag` is added with `label_tag 'Change Your Password'`.  The checkbox is wired in to the `onchange` event, which triggers a jQuery function to toggle a `will-toggle-wrapper` that encapsulates the partial.  Will Toggle allows you to abstract out the javascript functions, div wrappers, and other view elements so that your HTML/ERB/HAML is simple and organized.
 
-__Currently will\_toggle only supports a checkbox toggle, however, you can expect many more implementations to come.__
+__Currently will\_toggle only supports a checkbox or radio buton toggle, however, you can expect many more implementations to come.__
 
 
 ## Installation
